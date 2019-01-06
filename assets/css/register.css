@@ -1,0 +1,9 @@
+#background{
+    background-color: #000;
+    background-image: url(../images/profile-pics/ken_kaneki.jpg);
+    background-position:center;
+    background-size:cover;
+    display:table;
+    height:100%;
+    width:100%;
+}
