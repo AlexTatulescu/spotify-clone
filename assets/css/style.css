@@ -35,12 +35,12 @@ html, body{
 
 #nowPlayingBar .content {
     width: 100%;
+    height: 57px;
 }
 
-#nowPlayingBar .playerControls .content {
+.playerControls .buttons {
     margin: 0 auto;
     display: table;
-
 }
 .buttons .controlButton{
     background-color: transparent;
@@ -80,3 +80,24 @@ html, body{
     display: inline-flex;
     cursor: pointer;
 }
+
+.progressBarBg{
+    background-color: #404040;
+    height: 4px;
+    width: 100%;
+    border-radius: 2px;
+}
+
+.progress{
+    background-color: #a0a0a0;
+    height: 4px;
+    width: 100%;
+    border-radius: 2px;
+}
+
+.playbackBar .progressBar{
+    margin-top: 3px;
+}
+
+
+
