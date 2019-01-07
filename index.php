@@ -19,7 +19,19 @@ if (isset($_SESSION['userLoggedIn'])) {
 
         <div id="nowPlayingBar">
             <div id="nowPlayingLeft">
-
+                <div class="content">
+                    <span class="albumLink">
+                        <img class="albumArtwork" src="https://cdn.albumoftheyear.org/album/106020-invasion-of-privacy-1.jpg">
+                    </span>
+                    <div class="trackInfo">
+                        <span class="trackName">
+                            <span>Happy Birthday</span>
+                        </span>
+                        <span class="artistName">
+                            <span>CardiB</span>
+                        </span>
+                    </div>
+                </div>
             </div>
 
             <div id="nowPlayingCenter">
@@ -72,7 +84,17 @@ if (isset($_SESSION['userLoggedIn'])) {
             </div>
 
             <div id="nowPlayingRight">
+                <div class="volumeBar buttons">
+                    <button class="controlButton volume" title="Volume button">
+                        <img src="assets/images/icons/volume.png" alt="Volume">
+                    </button>
 
+                    <div class="progressBar">
+                        <div class="progressBarBg">
+                            <div class="progress"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
