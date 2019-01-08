@@ -1,26 +1,19 @@
-<?php
-include("includes/config.php");
+<?php include("includes/header.php") ?>
+<h1 class="pageHeadingBig">You Might Also Like</h1>
+<div class="gridViewContainer">
+    <?php
+    $albumQuery = mysqli_query($connection, "SELECT * FROM albums ORDER BY RAND() LIMIT 10");
+    while ($row = mysqli_fetch_array($albumQuery)) {
 
-//session_destroy(); LOGOUT
-
-if (isset($_SESSION['userLoggedIn'])) {
-    $userLoggedIn = $_SESSION['userLoggedIn'];
-} else {
-    // header("Location: register.php");
-}
-?>
-<html>
-<head>
-    <title>Welcome to Slotify</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-</head>
-<body>
-
-<div id="mainContainer">
-    <div id="topContainer">
-        <?php include("includes/navBarContainer.php"); ?>
-    </div>
-    <?php include('includes/nowPlayingBar.php'); ?>
+        echo "<div class='gridViewItem'>
+                <a href='album.php?id=" . $row['id'] . "'>
+                <img src='" . $row['artworkPath'] . "'>
+                <div class='gridViewInfo'>"
+            . $row['title'] .
+            "</div>
+                </a>
+              </div>";
+    }
+    ?>
 </div>
-</body>
-</html>
+<?php include("includes/footer.php") ?>;
