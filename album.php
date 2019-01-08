@@ -28,7 +28,7 @@ $artist = $album->getArtist();
                 $albumSong = new Song($connection,$songId);
                 $albumArtist= $albumSong->getArtist();
 
-                echo "<li class='tracklistRow'>
+                echo "<li class='trackListRow'>
                         <div class='trackCount'>
                             <img class='play' src='assets/images/icons/play-white.png' alt=''>
                             <span class='trackNumber'>$i</span>
@@ -48,7 +48,6 @@ $artist = $album->getArtist();
                         </div>
                       </li>";
                 $i++;
-
             }
         ?>
     </ul>
