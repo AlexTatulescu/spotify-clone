@@ -14,10 +14,52 @@ $jsonArray = json_encode($resultArray);
         currentPlaylist = <?php echo $jsonArray ?>;
         audioElement = new Audio();
         setTrack(currentPlaylist[0], currentPlaylist, false);
+
+        $(".playbackBar .progressBarBg").mousedown(function () {
+            mouseDown = true;
+        });
+
+        $(".playbackBar .progressBarBg").mousemove(function (e) {
+            if (mouseDown == true) {
+                timeFromOffset(e, this);
+            }
+        });
+
+        $(".playbackBar .progressBarBg").mouseup(function (e) {
+            timeFromOffset(e, this);
+        });
+
+        $(document).mouseup(function () {
+            mouseDown = false;
+        });
     });
 
+    function timeFromOffset(mouse, progressBar) {
+        var percentage = mouse.offsetX / $(progressBar).width() * 100;
+        var seconds = audioElement.audio.duration * (percentage / 100);
+        audioElement.setTime(seconds);
+    }
+
     function setTrack(trackId, newPlaylist, play) {
-        audioElement.setTrack('assets/music/bensound-clearday.mp3');
+        $.post("includes/handlers/ajax/getSongJson.php", {songId: trackId}, function (data) {
+            var track = JSON.parse(data);
+
+            $('.trackName span').text(track.title);
+
+            $.post("includes/handlers/ajax/getArtistJson.php", {artistId: track.artist}, function (data) {
+                var artist = JSON.parse(data);
+
+                $('.artistName span').text(artist.name);
+            });
+
+            $.post("includes/handlers/ajax/getAlbumJson.php", {albumId: track.album}, function (data) {
+                var album = JSON.parse(data);
+                $('.albumLink img').attr("src", album.artworkPath);
+            });
+
+            audioElement.setTrack(track);
+            playSong();
+        });
         if (play) {
             audioElement.play();
         } else {
@@ -26,6 +68,11 @@ $jsonArray = json_encode($resultArray);
     }
 
     function playSong() {
+
+        if (audioElement.audio.currentTime === 0) {
+            $.post("includes/handlers/ajax/updatePlays.php", {songId: audioElement.currentlyPlaying.id});
+        }
+
         $(".controlButton.play").hide();
         $(".controlButton.pause").show();
         audioElement.play();
@@ -44,14 +91,14 @@ $jsonArray = json_encode($resultArray);
             <div class="content">
                     <span class="albumLink">
                         <img class="albumArtwork"
-                             src="https://cdn.albumoftheyear.org/album/106020-invasion-of-privacy-1.jpg">
+                             src="">
                     </span>
                 <div class="trackInfo">
                         <span class="trackName">
-                            <span>Happy Birthday</span>
+                            <span></span>
                         </span>
                     <span class="artistName">
-                            <span>CardiB</span>
+                            <span></span>
                         </span>
                 </div>
             </div>
@@ -69,7 +116,8 @@ $jsonArray = json_encode($resultArray);
                     <button class="controlButton play" title="Play button" onclick="playSong()">
                         <img src="assets/images/icons/play.png" alt="Play">
                     </button>
-                    <button class="controlButton pause" title="Pause button" style="display: none;" onclick="pauseSong()">
+                    <button class="controlButton pause" title="Pause button" style="display: none;"
+                            onclick="pauseSong()">
                         <img src="assets/images/icons/pause.png" alt="Pause">
                     </button>
                     <button class="controlButton next" title="Next button">
@@ -86,7 +134,7 @@ $jsonArray = json_encode($resultArray);
                             <div class="progress"></div>
                         </div>
                     </div>
-                    <span class="progressTime remaining">0.00</span>
+                    <span class="progressTime remaining"></span>
                 </div>
             </div>
         </div>
