@@ -16,6 +16,7 @@ function openPage(url) {
     var encodedUrl = encodeURI(url+"&userLoggedIn="+userLoggedIn);
     $("#mainContent").load(encodedUrl);
 }
+
 function formatTime(seconds) {
     var time = Math.round(seconds);
     var minutes = Math.floor(time / 60);
