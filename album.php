@@ -13,30 +13,30 @@ $artist = $album->getArtist();
         <img src="<?php echo $album->getArtworkPath(); ?>">
     </div>
     <div class="rightSection">
-        <h2><?php echo$album->getTitle();?></h2>
-        <p>By <?php echo $artist->getName();?> </p>
-        <p> <?php echo $album->getNumberOfSongs();?> songs</p>
+        <h2><?php echo $album->getTitle(); ?></h2>
+        <p>By <?php echo $artist->getName(); ?> </p>
+        <p> <?php echo $album->getNumberOfSongs(); ?> songs</p>
     </div>
 </div>
 <div class="tracklistContainer">
     <ul class="tracklist">
         <?php
-            $songIdArray=$album->getSongIds();
-            $i = 1;
-            foreach ($songIdArray as $songId){
+        $songIdArray = $album->getSongIds();
+        $i = 1;
+        foreach ($songIdArray as $songId) {
 
-                $albumSong = new Song($connection,$songId);
-                $albumArtist= $albumSong->getArtist();
+            $albumSong = new Song($connection, $songId);
+            $albumArtist = $albumSong->getArtist();
 
-                echo "<li class='trackListRow'>
+            echo "<li class='trackListRow'>
                         <div class='trackCount'>
-                            <img class='play' src='assets/images/icons/play-white.png' alt=''>
+                            <img class='play' src='assets/images/icons/play-white.png' alt='' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
                             <span class='trackNumber'>$i</span>
                         </div>
                         
                         <div class='trackInfo'>
-                            <span class='trackName'>".$albumSong->getTitle()."</span>
-                            <span class='artistName'>".$albumArtist->getName()."</span>
+                            <span class='trackName'>" . $albumSong->getTitle() . "</span>
+                            <span class='artistName'>" . $albumArtist->getName() . "</span>
                         </div>
                         
                         <div class='trackOptions'>
@@ -44,12 +44,17 @@ $artist = $album->getArtist();
                         </div>
                         
                         <div class='trackDuration'>
-                            <span class='duration'>".$albumSong->getDuration()." </span>             
+                            <span class='duration'>" . $albumSong->getDuration() . " </span>             
                         </div>
                       </li>";
-                $i++;
-            }
+            $i++;
+        }
         ?>
+
+        <script>
+            var tempSongIds = '<?php echo json_encode($songIdArray); ?>';
+            tempPlaylist = JSON.parse(tempSongIds);
+        </script>
     </ul>
 </div>
 <?php include("includes/footer.php"); ?>
