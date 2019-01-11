@@ -26,6 +26,11 @@ class Song
         $this->duration=$this->mysqliData['duration'];
         $this->path=$this->mysqliData['path'];
     }
+
+    public function  getId(){
+        return $this->id;
+    }
+
     public function  getTitle(){
         return $this->title;
     }
