@@ -10,13 +10,18 @@ html, body {
     letter-spacing: 1px;
 }
 
+body {
+    background-color: #181818;
+    font-size: 14px;
+    min-width: 720px;
+}
+
 #nowPlayingBarContainer {
     width: 100%;
     background-color: #282828;
     bottom: 0;
     position: fixed;
     min-width: 620px;
-    height: 100px;
 }
 
 #nowPlayingBar {
@@ -55,13 +60,13 @@ html, body {
     display: table;
 }
 
-.buttons .controlButton {
+.controlButton {
     background-color: transparent;
     border: none;
     vertical-align: middle;
 }
 
-.buttons .controlButton img {
+.controlButton img {
     width: 20px;
     height: 20px;
 }
@@ -104,7 +109,7 @@ html, body {
 .progress {
     background-color: #a0a0a0;
     height: 4px;
-    width: 100%;
+    width: 0;
     border-radius: 2px;
 }
 
@@ -151,7 +156,7 @@ html, body {
 }
 
 #navBarContainer {
-    background-color: black;
+    background-color: #000;
     width: 220px;
     height: 100vh;
     position: fixed;
@@ -166,17 +171,20 @@ html, body {
     -ms-flex-direction: column;
 }
 
-.logo img {
-    width: 32px;
+.logo {
     margin-bottom: 15px;
 }
 
-.navbar .group {
+.logo img {
+    width: 32px;
+}
+
+.navBar .group {
     border-top: 1px solid #a0a0a0;
     padding: 10px 0;
 }
 
-.navitem {
+.navItem {
     padding: 10px 0;
     font-size: 14px;
     font-weight: 700;
@@ -185,26 +193,20 @@ html, body {
     position: relative;
 }
 
-.navitem .navItemLink {
+.navItemLink {
     color: #a0a0a0;
     text-decoration: none;
 }
 
-.navitem .navItemLink:hover {
-    color: white;
+.navItemLink:hover {
+    color: #ffffff;
 }
 
-.icon {
+.navItemLink .icon {
     position: absolute;
-    top: 6px;
     right: 0;
+    top: 6px;
     width: 25px;
-}
-
-body {
-    background-color: #181818;
-    font-size: 14px;
-    min-width: 720px;
 }
 
 #mainViewContainer {
@@ -235,10 +237,6 @@ body {
     width: 100%;
 }
 
-.gridViewItem a {
-    text-decoration: none;
-}
-
 .gridViewInfo {
     font-weight: 300;
     text-align: center;
@@ -246,6 +244,10 @@ body {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+}
+
+.gridViewItem a {
+    text-decoration: none;
 }
 
 .entityInfo {
@@ -280,80 +282,80 @@ body {
     font-weight: 200;
 }
 
-.trackListRow {
+.tracklist {
     padding: 0;
 }
 
-.trackListRow {
+.tracklistRow {
     height: 40px;
     padding: 15px 10px;
     list-style: none;
 }
 
-.trackListRow span {
+.tracklistRow span {
     color: #939393;
     font-weight: 200;
 }
 
-.trackListRow:hover {
+.tracklistRow:hover {
     background-color: #282828;
 }
 
-.trackListRow .trackCount {
+.tracklistRow .trackCount {
     width: 8%;
     float: left;
 }
 
-.trackListRow .trackCount img {
+.tracklistRow .trackCount img {
     width: 20px;
     visibility: hidden;
     position: absolute;
     cursor: pointer;
 }
 
-.trackListRow:hover .trackCount img {
+.tracklistRow:hover .trackCount img {
     visibility: visible;
 }
 
-.trackListRow .trackCount span {
+.tracklistRow .trackCount span {
     visibility: visible;
 }
 
-.trackListRow:hover .trackCount span {
+.tracklistRow:hover .trackCount span {
     visibility: hidden;
 }
 
-.trackListRow .trackInfo {
+.tracklistRow .trackInfo {
     width: 75%;
     float: left;
 }
 
-.trackListRow .trackInfo span {
+.tracklistRow .trackInfo span {
     display: block;
 }
 
-.trackListRow .trackOptions {
+.tracklistRow .trackOptions {
     width: 5%;
     float: left;
     text-align: right;
 }
 
-.trackListRow .trackOptions img {
+.tracklistRow .trackOptions img {
     width: 15px;
     visibility: hidden;
 }
 
-.trackListRow:hover .trackOptions img {
+.tracklistRow:hover .trackOptions img {
     visibility: visible;
 }
 
-.trackListRow .tracDuration {
+.tracklistRow .trackDuration {
     width: 12%;
     float: left;
     text-align: right;
 }
 
-.trackListRow .trackInfo .trackName {
+.tracklistRow .trackInfo .trackName {
     color: #fff;
     margin-bottom: 7px;
 }
@@ -362,7 +364,7 @@ body {
     text-align: center;
 }
 
-.artistInfo .button {
+.button {
     color: #fff;
     cursor: pointer;
     margin-bottom: 10px;
@@ -375,7 +377,7 @@ body {
     min-width: 130px;
 }
 
-.artistInfo .button.green {
+.button.green {
     background-color: #2ebd59;
     border-color: #2ebd59;
 }
@@ -428,10 +430,24 @@ input:focus {
 }
 
 .searchResultRow .artistName span {
-    color: white;
+    color: #fff;
 }
 
 .noResults {
     margin: 15px;
     display: block;
+}
+
+.buttonItems .button {
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+.playlistsContainer {
+    padding: 10px 0;
+}
+
+.playListImage {
+    border: 3px solid #282828;
+    padding: 10px;
 }
