@@ -11,8 +11,6 @@ if(isset($_POST['playlistId']) && isset($_POST['songId'])) {
     $order = $row['playlistOrder'];
 
     $query = mysqli_query($connection, "INSERT INTO playlist_songs VALUES(null, '$songId', '$playlistId', '$order')");
-    var_dump($connection);
-    die();
 }
 else {
     echo "PlaylistId or songId was not passed into addToPlaylist.php";
