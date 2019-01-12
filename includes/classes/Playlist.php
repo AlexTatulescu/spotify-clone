@@ -49,4 +49,11 @@ class Playlist
         }
         return $array;
     }
+
+    public static function getPlaylistsDropdown($connection,$username) {
+        $dropdown = '<select class="item playlist">
+                <option value="">Add to playlist</option>
+                </select>';
+        return $dropdown;
+    }
 }
