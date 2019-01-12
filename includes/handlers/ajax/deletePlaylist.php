@@ -9,3 +9,5 @@ if (isset($_POST['playlistId'])) {
 } else {
     echo "PlaylistId was not passed into file deletePlaylist.php";
 }
+
+?>
