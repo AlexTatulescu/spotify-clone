@@ -11,17 +11,17 @@ var timer;
 
 function openPage(url) {
 
-    if(timer !== null){
+    if (timer !== null) {
         clearTimeout(timer);
     }
 
-    if(url.indexOf("?")==-1){
-        url=url+"?";
+    if (url.indexOf("?") == -1) {
+        url = url + "?";
     }
-    var encodedUrl = encodeURI(url+"&userLoggedIn="+userLoggedIn);
+    var encodedUrl = encodeURI(url + "&userLoggedIn=" + userLoggedIn);
     $("#mainContent").load(encodedUrl);
-    $("body").scrollTop=0;
-    history.pushState(null,null,url);
+    $("body").scrollTop = 0;
+    history.pushState(null, null, url);
 }
 
 function formatTime(seconds) {
@@ -48,8 +48,42 @@ function updateVolumeProgressBar(audio) {
 }
 
 function playFirstSong() {
-    setTrack(tempPlaylist[0],tempPlaylist,true);
+    setTrack(tempPlaylist[0], tempPlaylist, true);
 }
+
+function createPlaylist() {
+    var popup = prompt("Please enter the name of your playlist");
+
+    if (alert !== null) {
+        $.post("includes/handlers/ajax/createPlaylist.php", {
+            name: popup,
+            username: userLoggedIn
+        }).done(function (error) {
+            if (error !== "") {
+                alert(error);
+                return;
+            }
+            openPage("yourMusic.php");
+        });
+    }
+}
+
+function deletePlaylist(playlistId) {
+    var prompt = confirm("Are you sure you want to delete this playlist?");
+
+    if(prompt){
+        $.post("includes/handlers/ajax/deletePlaylist.php", {
+            playlistId: playlistId
+        }).done(function (error) {
+            if (error !== "") {
+                alert(error);
+                return;
+            }
+            openPage("yourMusic.php");
+        });
+    }
+}
+
 function Audio() {
 
     this.currentlyPlaying;
