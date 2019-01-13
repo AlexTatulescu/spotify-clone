@@ -102,7 +102,7 @@ $jsonArray = json_encode($resultArray);
 
     function setMute() {
         audioElement.audio.muted = !audioElement.audio.muted;
-        var imageName = audioElement.audio.muted ? "volume.png" : "volume-mute.png";
+        var imageName = audioElement.audio.muted ? "volume-mute.png" : "volume.png";
         $('.controlButton.volume img').attr("src", "assets/images/icons/" + imageName);
     }
 
